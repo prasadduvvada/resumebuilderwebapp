@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login to Resume Builder</h1>
+        <form id="loginForm">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" required>
+
+            <label for="loginPassword">Password:</label>
+            <input type="password" id="loginPassword" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMessage" style="margin-top: 20px; font-weight: bold;"></p>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+    <script src="https://unpkg.com/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+    <script src="cognito-auth.js"></script>
+    <script>
+        // Redirect to resume form if already logged in (e.g., if user navigates back)
+        if (localStorage.getItem('idToken')) {
+            window.location.href = 'resume_form.html';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default browser form submission
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const messageElement = document.getElementById('loginMessage');
+
+            try {
+                messageElement.textContent = 'Logging in...';
+                messageElement.style.color = 'blue';
+
+                await cognitoLogin(email, password); // Call the login function from cognito-auth.js
+                messageElement.textContent = 'Login successful! Redirecting...';
+                messageElement.style.color = 'green';
+                setTimeout(() => {
+                    window.location.href = 'resume_form.html'; // Redirect to the main form page
+                }, 1000); // Wait 1 second before redirecting
+            } catch (error) {
+                console.error("Login error:", error);
+                messageElement.textContent = 'Login failed: ${error.message || error}';
+                messageElement.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>

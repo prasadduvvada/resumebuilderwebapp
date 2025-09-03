@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Resume</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="welcomeMessage">Build Your Professional Resume</h1>
+        <button id="logoutButton" style="float: right; margin-top: -50px; background-color: #dc3545;">Logout</button>
+
+        <form id="resumeForm">
+            <p>All fields are required unless specified.</p>
+
+            <h2>Personal Details</h2>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required> 
+	    <label for="phone">Phone Number (Optional):</label>
+            <input type="tel" id="phone" name="phone">
+
+            <h2>Education</h2>
+            <div id="educationFields">
+                <div class="edu-entry">
+                    <label>School/College:</label>
+                    <input type="text" name="education[0][school]" required>
+                    <label>Degree/Major:</label>
+                    <input type="text" name="education[0][degree]" required>
+                    <label>Graduation Year:</label>
+                    <input type="text" name="education[0][year]" placeholder="e.g., 2023" required>
+                </div>
+            </div>
+            <button type="button" id="addEducation">Add Another Education</button>
+
+            <h2>Experience</h2>
+            <div id="experienceFields">
+                <div class="exp-entry">
+                    <label>Company:</label>
+                    <input type="text" name="experience[0][company]" required>
+                    <label>Role/Title:</label>
+                    <input type="text" name="experience[0][role]" required>
+                    <label>Duration (e.g., 2020 - 2023):</label>
+                    <input type="text" name="experience[0][duration]" required>
+                </div>
+            </div>
+            <button type="button" id="addExperience">Add Another Experience</button>
+
+            <h2>Skills</h2>
+            <label for="skills">Skills (Comma separated, e.g., Python, AWS, JavaScript):</label>
+            <input type="text" id="skills" name="skills" required>
+
+            <h2>Projects (Optional)</h2>
+            <div id="projectsFields">
+                <div class="proj-entry">
+                    <label>Project Title:</label>
+                    <input type="text" name="projects[0][title]">
+                    <label>Description:</label>
+                    <textarea name="projects[0][description]" rows="3"></textarea>
+                </div>
+            </div>
+            <button type="button" id="addProject">Add Another Project</button>
+
+            <button type="submit">Generate My Resume</button>
+        </form>
+        <p id="message" style="margin-top: 20px; font-weight: bold;"></p>
+    </div>
+    <script src="https://unpkg.com/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+    <script src="cognito-auth.js"></script>
+    <script src="resume-app.js"></script>
+</body>
+</html>

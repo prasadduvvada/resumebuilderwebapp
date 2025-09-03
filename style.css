@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content.center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto; /* Center the container */
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 15px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="password"],
+form textarea {
+    width: calc(100% - 22px); /* Account for padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+form textarea {
+    resize: vertical;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+button#addEducation,
+button#addExperience,
+button#addProject {
+    background-color: #6c757d;
+    font-size: 14px;
+    padding: 8px 15px;
+    width: auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+button#addEducation:hover,
+button#addExperience:hover,
+button#addProject:hover {
+    background-color: #5a6268;
+}
+
+.edu-entry, .exp-entry, .proj-entry {
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #fdfdfd;
+}
+
+.edu-entry:first-of-type, .exp-entry:first-of-type, .proj-entry:first-of-type {
+    margin-top: 0;
+}
+
+#message {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e0ffe0;
+    color: green;
+    border: 1px solid #c0ffc0;
+    display: none; /* Hidden by default */
+}
+#message.error {
+    background-color: #ffe0e0;
+    color: red;
+    border: 1px solid #ffc0c0;
+}
+#message a { /* Styling for the download link */
+    color: #007bff;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-left: 5px;
+}

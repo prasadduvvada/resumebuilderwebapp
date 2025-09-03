@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+</head>
+<body>
+    <script>
+        // Simple redirect based on login status stored in localStorage
+        if (localStorage.getItem('idToken')) {
+            window.location.href = 'resume_form.html'; // Go to resume form if logged in
+        } else {
+            window.location.href = 'login.html'; // Go to login page if not
+        }
+    </script>
+</body>
+</html>

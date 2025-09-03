@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up for Resume Builder</h1>
+        <form id="signupForm">
+            <label for="signupEmail">Email:</label>
+            <input type="email" id="signupEmail" required>
+
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" required>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p id="signupMessage" style="margin-top: 20px; font-weight: bold;"></p>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+    <script src="https://unpkg.com/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+    <script src="cognito-auth.js"></script>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default browser form submission
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageElement = document.getElementById('signupMessage');
+
+            if (password !== confirmPassword) {
+                messageElement.textContent = 'Passwords do not match.';
+                messageElement.style.color = 'red';
+                return; // Stop execution if passwords don't match
+            }
+
+            try {
+                messageElement.textContent = 'Signing up...';
+                messageElement.style.color = 'blue';
+
+                await cognitoSignup(email, password); // Call the signup function from cognito-auth.js
+                messageElement.textContent = 'Sign up successful! Please check your email for a verification code and then login.';
+                messageElement.style.color = 'green';
+                // No automatic redirect here, user needs to confirm email first
+            } catch (error) {
+                console.error("Signup error:", error);
+                messageElement.textContent = Sign up failed: ${error.message || error};
+                messageElement.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
